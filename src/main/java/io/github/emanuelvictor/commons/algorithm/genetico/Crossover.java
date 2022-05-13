@@ -1,4 +1,4 @@
-package io.github.emanuelvictor.infrastructure.algorithm.genetico;
+package io.github.emanuelvictor.commons.algorithm.genetico;
 
 /*
  * Algoritmo Genético implementado por Emanuel Victor e Haroldo Ramirez em 29/09/14.

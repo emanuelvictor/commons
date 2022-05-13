@@ -1,7 +1,7 @@
-package io.github.emanuelvictor.infrastructure.async;
+package io.github.emanuelvictor.commons.async;
 
-import io.github.emanuelvictor.infrastructure.algorithm.Matrix;
-import io.github.emanuelvictor.infrastructure.algorithm.memetico.Memetic;
+import io.github.emanuelvictor.commons.algorithm.Matrix;
+import io.github.emanuelvictor.commons.algorithm.memetico.Memetic;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static io.github.emanuelvictor.infrastructure.async.ThreadComponent.pool;
+import static io.github.emanuelvictor.commons.async.ThreadComponent.pool;
 
 
 public class ThreadComponentTests {

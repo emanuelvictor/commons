@@ -1,4 +1,4 @@
-package io.github.emanuelvictor.infrastructure.aid;
+package io.github.emanuelvictor.commons.aid;
 
 
 import java.lang.reflect.*;

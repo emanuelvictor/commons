@@ -1,4 +1,4 @@
-package io.github.emanuelvictor.infrastructure.async;
+package io.github.emanuelvictor.commons.async;
 
 import java.util.ArrayList;
 import java.util.Collection;

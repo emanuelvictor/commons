@@ -1,4 +1,4 @@
-package io.github.emanuelvictor.infrastructure.context;
+package io.github.emanuelvictor.commons.context;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

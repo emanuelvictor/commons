@@ -1,8 +1,8 @@
-package io.github.emanuelvictor.infrastructure.algorithm.memetico;
+package io.github.emanuelvictor.commons.algorithm.memetico;
 
 
 
-import io.github.emanuelvictor.infrastructure.algorithm.Matrix;
+import io.github.emanuelvictor.commons.algorithm.Matrix;
 
 import java.util.Arrays;
 import java.util.Random;

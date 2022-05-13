@@ -1,8 +1,8 @@
-package io.github.emanuelvictor.infrastructure.algorithm;
+package io.github.emanuelvictor.commons.algorithm;
 
 
-import io.github.emanuelvictor.infrastructure.algorithm.memetico.Memetic;
-import io.github.emanuelvictor.infrastructure.algorithm.memetico.OldMemetic;
+import io.github.emanuelvictor.commons.algorithm.memetico.Memetic;
+import io.github.emanuelvictor.commons.algorithm.memetico.OldMemetic;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

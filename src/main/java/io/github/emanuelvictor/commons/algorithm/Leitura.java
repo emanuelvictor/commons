@@ -1,4 +1,4 @@
-package io.github.emanuelvictor.infrastructure.algorithm;
+package io.github.emanuelvictor.commons.algorithm;
 
 import java.io.BufferedReader;
 import java.io.IOException;
