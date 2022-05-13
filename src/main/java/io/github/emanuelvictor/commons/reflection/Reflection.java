@@ -19,7 +19,7 @@ public class Reflection {
     /**
      * Extract the attributes from class
      *
-     * @return Set<String>
+     * @return {@link Set}
      */
     public static Set<String> getAttributesFromClass(final Class<?> clazz) {
 
@@ -35,7 +35,7 @@ public class Reflection {
     /**
      * Extract the attributes from class
      *
-     * @return Set<String>
+     * @return {@link Set}
      */
     public static Object getValueFromAttribute(final Object object, final String attribute) {
 

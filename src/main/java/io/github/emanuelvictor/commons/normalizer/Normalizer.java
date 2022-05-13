@@ -17,18 +17,17 @@ public final class Normalizer<T> {
     /**
      * Normalize the words to write CEF return bulk
      *
-     * @param str String
-     * @return String
+     * @param str {@link String}
+     * @return {@link String}
      */
     public static String normalize(final String str) {
-        if(str == null)
+        if (str == null)
             return null;
         return java.text.Normalizer.normalize(str, java.text.Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replaceAll("&", " ").replaceAll("\t", " ").replaceAll("\n", " ").replaceAll("\r", " ");
     }
 
     /**
-     * @param object Object
-     * @return HashMap<String, Object>
+     *
      */
     public T normalize(final T object) {
 
@@ -39,9 +38,7 @@ public final class Normalizer<T> {
     }
 
     /**
-     * @param object    Object
-     * @param attribute String
-     * @return HashMap<String, Object>
+     *
      */
     public T normalize(final T object, final String attribute) {
 
@@ -73,8 +70,7 @@ public final class Normalizer<T> {
     }
 
     /**
-     * @param object Object
-     * @return Set<String>
+     *
      */
     public static Set<String> extractAttributesFromObject(final Object object) {
 
