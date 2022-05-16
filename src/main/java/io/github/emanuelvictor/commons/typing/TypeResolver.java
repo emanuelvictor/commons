@@ -12,6 +12,16 @@ import java.util.*;
 public class TypeResolver {
 
     /*
+     * @param clazz
+     * @param instance
+     * @param <T>
+     * @return
+     */
+    private static <T> Class<T> getClass(final Class clazz, final Object instance) {
+        return (Class<T>) TypeResolver.getTypeArguments(clazz, instance.getClass()).get(0);
+    }
+
+    /*
      * Get the actual type arguments a child class has used to extend a generic
      * base class. (Taken from <a href="http://www.artima.com/weblogs/viewpost.jsp?thread=208860">http://www.artima.com/weblogs/viewpost.jsp?thread=208860</a>. Thanks
      * mathieu.grenonville for finding this solution!)
