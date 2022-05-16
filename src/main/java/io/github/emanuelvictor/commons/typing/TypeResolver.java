@@ -17,7 +17,7 @@ public class TypeResolver {
      * @param <T>
      * @return
      */
-    private static <T> Class<T> getClass(final Class clazz, final Object instance) {
+    public static <T> Class<T> getClass(final Class clazz, final Object instance) {
         return (Class<T>) TypeResolver.getTypeArguments(clazz, instance.getClass()).get(0);
     }
 
