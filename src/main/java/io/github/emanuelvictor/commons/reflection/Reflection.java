@@ -30,7 +30,7 @@ public class Reflection {
      * See more on {@link org.apache.bcel.classfile.AccessFlags} and {@link org.apache.bcel.Constants}.
      *
      * @param clazz     {@link Class}
-     * @param modifiers {@link Short...} modifiers of the fields (public, protected, transient, private, etc...)
+     * @param modifiers {@link Short[]} modifiers of the fields (public, protected, transient, private, etc...)
      * @return {@link List} List list of fields
      */
     public static List<String> getFields(final Class<?> clazz, final Short... modifiers) {
@@ -100,7 +100,9 @@ public class Reflection {
     /**
      * Extract the attributes from class
      *
-     * @return {@link Set}
+     * @param object    {@link Object}
+     * @param attribute {@link String}
+     * @return {@link Object}
      */
     public static Object getValueFromAttribute(final Object object, final String attribute) {
 

@@ -7,6 +7,9 @@ import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ *
+ */
 public final class Normalizer<T> {
 
     /**
@@ -26,7 +29,7 @@ public final class Normalizer<T> {
         return java.text.Normalizer.normalize(str, java.text.Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replaceAll("&", " ").replaceAll("\t", " ").replaceAll("\n", " ").replaceAll("\r", " ");
     }
 
-    /**
+    /*
      *
      */
     public T normalize(final T object) {
@@ -37,8 +40,7 @@ public final class Normalizer<T> {
         return object;
     }
 
-    /**
-     *
+    /*
      */
     public T normalize(final T object, final String attribute) {
 
@@ -70,7 +72,8 @@ public final class Normalizer<T> {
     }
 
     /**
-     *
+     * @param object {@link Object}
+     * @return {@link Set}
      */
     public static Set<String> extractAttributesFromObject(final Object object) {
 

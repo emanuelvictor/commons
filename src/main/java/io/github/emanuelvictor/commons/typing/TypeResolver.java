@@ -1,4 +1,4 @@
-package io.github.emanuelvictor.commons.aid;
+package io.github.emanuelvictor.commons.typing;
 
 
 import java.lang.reflect.*;
@@ -9,19 +9,19 @@ import java.util.*;
  *
  * @author Emanuel Victor
  */
-public class TypeExtractor {
+public class TypeResolver {
 
-    /**
+    /*
      * Get the actual type arguments a child class has used to extend a generic
      * base class. (Taken from <a href="http://www.artima.com/weblogs/viewpost.jsp?thread=208860">http://www.artima.com/weblogs/viewpost.jsp?thread=208860</a>. Thanks
      * mathieu.grenonville for finding this solution!)
      *
-     * @param baseClass  Class the base class
-     * @param childClass Class the child class
-     * @return List a list of the raw classes for the actual type arguments.
+     * @param baseClass  {@link Class} the base class
+     * @param childClass {@link Class} Class the child class
+     * @return {@link List} a list of the raw classes for the actual type arguments.
      */
-    public static <T> List<Class<?>> getTypeArguments(Class<T> baseClass,
-                                                      Class<? extends T> childClass) {
+    public static <T> List<Class<?>> getTypeArguments(final Class<T> baseClass,
+                                                      final Class<? extends T> childClass) {
         Map<Type, Type> resolvedTypes = new HashMap<Type, Type>();
         Type type = childClass;
         // start walking up the inheritance hierarchy until we hit baseClass
