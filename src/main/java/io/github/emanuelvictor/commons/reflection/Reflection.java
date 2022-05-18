@@ -1,18 +1,22 @@
 package io.github.emanuelvictor.commons.reflection;
 
+import io.github.emanuelvictor.commons.reflection.aspect.Ignore;
 import org.apache.bcel.Constants;
+import org.apache.bcel.classfile.Field;
 import org.apache.bcel.classfile.FieldOrMethod;
 import org.apache.bcel.classfile.JavaClass;
 import org.apache.bcel.util.ClassLoaderRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  *
@@ -35,17 +39,24 @@ public class Reflection {
      */
     public static List<String> getFields(final Class<?> clazz, final Short... modifiers) {
         final ClassLoaderRepository repository = new ClassLoaderRepository(clazz.getClassLoader());
-        final JavaClass javaClass;
-        try {
-            javaClass = repository.loadClass(clazz.getName());
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        final JavaClass javaClass = getJavaClass(clazz.getName(), repository);
+        return returnFields(clazz, Arrays.stream(javaClass.getFields())
+                .filter(field -> Arrays.stream(modifiers).anyMatch(f -> field.getModifiers() == f)));
+    }
 
-        return Arrays.stream(javaClass.getFields())
-                .filter(field -> Arrays.stream(modifiers).anyMatch(f -> field.getModifiers() == f))
-                .map(FieldOrMethod::getName)
-                .collect(Collectors.toList());
+    /**
+     * Get {@link JavaClass} from className in String via bcel library.
+     *
+     * @param className  {@link String}
+     * @param repository {@link ClassLoaderRepository}
+     * @return {@link JavaClass}
+     */
+    static JavaClass getJavaClass(final String className, final ClassLoaderRepository repository) {
+        try {
+            return repository.loadClass(className);
+        } catch (final ClassNotFoundException e) { // TODO maske test
+            throw new io.github.emanuelvictor.commons.reflection.exception.ClassNotFoundException(e.getMessage(), e);
+        }
     }
 
     /**
@@ -68,14 +79,37 @@ public class Reflection {
      */
     public static List<String> getAllFields(final Class<?> clazz) {
         final ClassLoaderRepository repository = new ClassLoaderRepository(clazz.getClassLoader());
-        final JavaClass javaClass;
-        try {
-            javaClass = repository.loadClass(clazz.getName());
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        final JavaClass javaClass = getJavaClass(clazz.getName(), repository);
+        return returnFields(clazz, Arrays.stream(javaClass.getFields()));
+    }
 
-        return Arrays.stream(javaClass.getFields())
+    /**
+     * Get annotation from field
+     *
+     * @param clazz           {@link Class}
+     * @param annotationClass {@link Class}
+     * @param fieldName       {@link String}
+     * @return {@link Annotation}
+     */
+    public static Annotation getAnnotationFromField(final Class<?> clazz, Class annotationClass, final String fieldName) {
+        try {
+            return clazz.getDeclaredField(fieldName).getAnnotation(annotationClass);
+        } catch (final NoSuchFieldException e) {
+            throw new io.github.emanuelvictor.commons.reflection.exception.NoSuchFieldException(e.getMessage(), e);
+        }
+    }
+
+    /**
+     * @param clazz  {@link Class}
+     * @param fields {@link Stream}
+     * @return {@link List}
+     */
+    static List<String> returnFields(final Class<?> clazz, final Stream<Field> fields) {
+        return fields
+                .filter(field -> {
+                    final Annotation ignoreAnnotation = getAnnotationFromField(clazz, Ignore.class, field.getName());
+                    return ignoreAnnotation == null;
+                })
                 .map(FieldOrMethod::getName)
                 .collect(Collectors.toList());
     }
@@ -87,7 +121,7 @@ public class Reflection {
      * @return {@link Set}
      */
     @Deprecated
-    public static Set<String> getAttributesFromClass(final Class<?> clazz) {
+    public static Set<String> getAttributesFromClass(final Class<?> clazz) {  // TODO maske test
         return Arrays.stream(clazz.getDeclaredMethods())
                 .map(Method::getName)
                 .filter(method -> method.contains("get") || method.contains("set"))
@@ -104,7 +138,7 @@ public class Reflection {
      * @param attribute {@link String}
      * @return {@link Object}
      */
-    public static Object getValueFromAttribute(final Object object, final String attribute) {
+    public static Object getValueFromAttribute(final Object object, final String attribute) {  // TODO maske test
 
         for (Method method : object.getClass().getMethods()) {
             if (method.getName().toLowerCase().replace("get", "").equalsIgnoreCase(attribute.toLowerCase())) {
