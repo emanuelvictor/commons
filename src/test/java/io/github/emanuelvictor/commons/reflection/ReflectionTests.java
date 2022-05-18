@@ -1,6 +1,7 @@
 package io.github.emanuelvictor.commons.reflection;
 
 import io.github.emanuelvictor.commons.reflection.aspect.Ignore;
+import io.github.emanuelvictor.commons.reflection.example.Address;
 import io.github.emanuelvictor.commons.reflection.example.Employee;
 import io.github.emanuelvictor.commons.reflection.exception.NoSuchFieldException;
 import org.apache.bcel.Constants;
@@ -129,7 +130,7 @@ public class ReflectionTests {
      *
      */
     @Test
-    public void getAnnotationFromFieldTestMustNotPass() {
+    public void getAnnotationFromFieldMustNotPassTest() {
         org.junit.jupiter.api.Assertions.assertThrows(NoSuchFieldException.class, () -> Reflection.getAnnotationFromField(Employee.class, Ignore.class, "notFoundField"));
     }
 
@@ -137,11 +138,33 @@ public class ReflectionTests {
      *
      */
     @Test
-    public void getJavaClassTestMustNotPass() {
+    public void getJavaClassMustNotPassTest() {
         final Class clazz = Employee.class;
-
         final ClassLoaderRepository repository = new ClassLoaderRepository(clazz.getClassLoader());
-
         org.junit.jupiter.api.Assertions.assertThrows(io.github.emanuelvictor.commons.reflection.exception.ClassNotFoundException.class, () -> Reflection.getJavaClass("NotFoundClassName", repository));
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void extractValuesFromObjectTest() {
+        final Address address = new Address("name" + 1, 1, "street" + 1, 1);
+        Assertions.assertThat(Reflection.getValueFromField(address, "name")).isNotNull();
+        Assertions.assertThat(Reflection.getValueFromField(address, "name")).isEqualTo("name" + 1);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void extractFieldsFromFinalPrivateFieldTest() {
+        final List<String> fields = Reflection.getFields(Address.class);
+
+        Assertions.assertThat(fields).isNotNull();
+        Assertions.assertThat(fields).isNotEmpty();
+        for (final String field : fields) {
+            Assertions.assertThat(field).isNotNull();
+        }
     }
 }

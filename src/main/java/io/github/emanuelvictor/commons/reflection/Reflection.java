@@ -68,7 +68,7 @@ public class Reflection {
      * @return {@link List}List list of fields
      */
     public static List<String> getFields(final Class<?> clazz) {
-        return getFields(clazz, (short) 0, Constants.ACC_PUBLIC, Constants.ACC_FINAL, Constants.ACC_PRIVATE, Constants.ACC_PROTECTED);
+        return getFields(clazz, (short) 0, (short) 18, Constants.ACC_PUBLIC, Constants.ACC_FINAL, Constants.ACC_PRIVATE, Constants.ACC_PROTECTED);
     }
 
     /**
@@ -132,15 +132,15 @@ public class Reflection {
     }
 
     /**
-     * Extract the attributes from class
+     * Extract the attributes from class.
      *
      * @param object    {@link Object}
      * @param attribute {@link String}
      * @return {@link Object}
      */
-    public static Object getValueFromAttribute(final Object object, final String attribute) {  // TODO maske test
+    public static Object getValueFromField(final Object object, final String attribute) {
 
-        for (Method method : object.getClass().getMethods()) {
+        for (final Method method : object.getClass().getMethods()) {
             if (method.getName().toLowerCase().replace("get", "").equalsIgnoreCase(attribute.toLowerCase())) {
                 try {
                     return method.invoke(object);
@@ -152,5 +152,17 @@ public class Reflection {
 
         return null;
     }
+
+    /**
+     * @param object    {@link Object}
+     * @param attribute {@link String}
+     * @return {@link Object}
+     * @deprecated use getValueFromField
+     */
+    @Deprecated
+    public static Object getValueFromAttribute(final Object object, final String attribute) {
+        return getValueFromField(object, attribute);
+    }
+
 }
 
