@@ -24,8 +24,21 @@ public final class Normalizer<T> {
      * @return {@link String}
      */
     public static String normalize(final String str) {
+        return normalize(str, false);
+    }
+
+    /**
+     * Normalize the words to write CEF return bulk
+     *
+     * @param str  {@link String}
+     * @param trim boolean
+     * @return {@link String}
+     */
+    public static String normalize(final String str, final boolean trim) {
         if (str == null)
             return null;
+        if (trim)
+            return java.text.Normalizer.normalize(str, java.text.Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replaceAll("&", " ").replaceAll("\t", " ").replaceAll("\n", " ").replaceAll("\r", " ").trim();
         return java.text.Normalizer.normalize(str, java.text.Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replaceAll("&", " ").replaceAll("\t", " ").replaceAll("\n", " ").replaceAll("\r", " ");
     }
 

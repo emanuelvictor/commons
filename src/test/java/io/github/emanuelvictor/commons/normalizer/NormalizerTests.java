@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import static io.github.emanuelvictor.commons.normalizer.Normalizer.normalize;
 
+/**
+ *
+ */
 class NormalizerTests {
 
     /**
@@ -20,9 +23,18 @@ class NormalizerTests {
      *
      */
     @Test
+    void removingSpecialCharactersAndTrimTest() {
+        Assertions.assertThat(normalize("teste\n\t\r", true)).isEqualTo("teste");
+    }
+
+    /**
+     *
+     */
+    @Test
     void normalizeFunctionWithNullInputTest() {
         Assertions.assertThat(normalize(null)).isNull();
     }
+
 }
 
 
