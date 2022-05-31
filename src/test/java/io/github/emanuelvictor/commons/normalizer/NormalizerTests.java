@@ -35,6 +35,32 @@ class NormalizerTests {
         Assertions.assertThat(normalize(null)).isNull();
     }
 
+    /**
+     *
+     */
+    @Test
+    void removingSpecialCharactersAndTrimFromEntityTest() {
+        final Entity entity = new Entity();
+        entity.setTest("    teste\n\t\r");
+        Assertions.assertThat(new Normalizer<Entity>().normalize(entity, true).getTest()).isEqualTo("teste");
+    }
+
+    /**
+     *
+     */
+    class Entity {
+
+        private String test;
+
+        public String getTest() {
+            return test;
+        }
+
+        public void setTest(String test) {
+            this.test = test;
+        }
+    }
+
 }
 
 

@@ -46,16 +46,23 @@ public final class Normalizer<T> {
      *
      */
     public T normalize(final T object) {
+        return normalize(object, false);
+    }
+
+    /*
+     *
+     */
+    public T normalize(final T object, final boolean trim) {
 
         final Set<String> attributes = extractAttributesFromObject(object);
-        attributes.forEach(attribute -> normalize(object, attribute));
+        attributes.forEach(attribute -> normalize(object, attribute, trim));
 
         return object;
     }
 
     /*
      */
-    public T normalize(final T object, final String attribute) {
+    public T normalize(final T object, final String attribute, final boolean trim) {
 
         try {
             final Method[] methodList = object.getClass().getDeclaredMethods();
@@ -65,7 +72,7 @@ public final class Normalizer<T> {
                     if (getMethod.invoke(object) != null && getMethod.invoke(object) instanceof String) {
                         final String noNormalized = (String) getMethod.invoke(object);
 
-                        final String normalized = normalize(noNormalized);
+                        final String normalized = normalize(noNormalized, trim);
                         if (!noNormalized.equalsIgnoreCase(normalized)) {
 
                             for (final Method setMethod : methodList)
