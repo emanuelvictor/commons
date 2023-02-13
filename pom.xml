@@ -4,7 +4,7 @@
 
     <groupId>io.github.emanuelvictor</groupId>
     <artifactId>commons</artifactId>
-    <version>1.8-SNAPSHOT</version>
+    <version>1.20-SNAPSHOT</version>
 
     <name>commons</name>
     <description>Commons for EV Software</description>
