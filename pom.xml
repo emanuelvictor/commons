@@ -4,7 +4,7 @@
 
     <groupId>io.github.emanuelvictor</groupId>
     <artifactId>commons</artifactId>
-    <version>1.21</version>
+    <version>1.22-SNAPSHOT</version>
 
     <name>commons</name>
     <description>Commons for EV Software</description>
@@ -30,7 +30,7 @@
         <developerConnection>scm:git:ssh://github.com:emanuelvictor/commons.git
         </developerConnection>
         <url>http://github.com/emanuelvictor/commons/tree/main</url>
-        <tag>commons-1.21</tag>
+        <tag>commons-1.20</tag>
     </scm>
 
 
