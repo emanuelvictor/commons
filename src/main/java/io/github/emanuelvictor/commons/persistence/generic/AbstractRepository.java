@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /*
@@ -80,7 +81,7 @@ public abstract class AbstractRepository<T extends IPersistentEntity, ID> implem
      * @throws IllegalArgumentException if {@literal id} is {@literal null}.
      */
     public Optional<T> findById(ID id) {
-        return collection.stream().filter(t -> t.getId().equals(id)).toList().stream().findFirst(); // TODO Coupling, Must have annotations to use reflection
+        return collection.stream().filter(t -> t.getId().equals(id)).collect(Collectors.toList()).stream().findFirst(); // TODO Coupling, Must have annotations to use reflection
     }
 
     /*
