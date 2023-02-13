@@ -4,7 +4,7 @@ package io.github.emanuelvictor.commons.persistence;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-/**
+/*
  * Interface for generic CRUD operations on a repository for a specific type.
  *
  * @author Oliver Gierke
@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  */
 public interface CrudRepository<T extends IPersistentEntity, ID> extends Repository<T, ID> {
 
-    /**
+    /*
      * Saves a given entity. Use the returned instance for further operations as the save operation might have changed the
      * entity instance completely.
      *
@@ -22,7 +22,7 @@ public interface CrudRepository<T extends IPersistentEntity, ID> extends Reposit
      */
     <S extends T> S save(S entity);
 
-    /**
+    /*
      * Saves all given entities.
      *
      * @param entities must not be {@literal null} nor must it contain {@literal null}.
@@ -33,7 +33,7 @@ public interface CrudRepository<T extends IPersistentEntity, ID> extends Reposit
      */
     <S extends T> Iterable<S> saveAll(Iterable<S> entities);
 
-    /**
+    /*
      * Retrieves an entity by its id.
      *
      * @param id must not be {@literal null}.
@@ -42,12 +42,12 @@ public interface CrudRepository<T extends IPersistentEntity, ID> extends Reposit
      */
     Optional<T> findById(ID id);
 
-    /**
+    /*
      * @return all objects from collection
      */
     Stream<T> findAll();
 
-    /**
+    /*
      * Erase collection
      */
     void eraseData();

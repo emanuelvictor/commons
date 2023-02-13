@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-/**
+/*
  * @param <T>
  * @param <ID>
  */
@@ -18,19 +18,19 @@ public abstract class AbstractRepository<T extends IPersistentEntity, ID> implem
 
     private Integer lastId = 1;
 
-    /**
+    /*
      *
      */
     private final List<T> collection = new ArrayList<>();
 
-    /**
+    /*
      * @return Stream
      */
     public Stream<T> getStream() {
         return collection.stream();
     }
 
-    /**
+    /*
      * Saves a given entity. Use the returned instance for further operations as the save operation might have changed the
      * entity instance completely.
      *
@@ -58,7 +58,7 @@ public abstract class AbstractRepository<T extends IPersistentEntity, ID> implem
         throw new RuntimeException("Não encontrado " + id);
     }
 
-    /**
+    /*
      * Saves all given entities.
      *
      * @param entities must not be {@literal null} nor must it contain {@literal null}.
@@ -72,7 +72,7 @@ public abstract class AbstractRepository<T extends IPersistentEntity, ID> implem
         return entities;
     }
 
-    /**
+    /*
      * Retrieves an entity by its id.
      *
      * @param id must not be {@literal null}.
@@ -83,7 +83,7 @@ public abstract class AbstractRepository<T extends IPersistentEntity, ID> implem
         return collection.stream().filter(t -> t.getId().equals(id)).toList().stream().findFirst(); // TODO Coupling, Must have annotations to use reflection
     }
 
-    /**
+    /*
      * @return Stream<T>
      */
     @Override
@@ -91,7 +91,7 @@ public abstract class AbstractRepository<T extends IPersistentEntity, ID> implem
         return collection.stream();
     }
 
-    /**
+    /*
      *
      */
     public void eraseData() {
