@@ -1,6 +1,7 @@
 package io.github.emanuelvictor.commons.persistence.generic;
 
-import com.emanuelvictor.api.functional.flowcreator.infrastructure.persistence.IPersistentEntity;
+
+import io.github.emanuelvictor.commons.persistence.IPersistentEntity;
 
 /**
  * @author Emanuel Victor
