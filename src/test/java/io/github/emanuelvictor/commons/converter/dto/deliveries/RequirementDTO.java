@@ -6,6 +6,8 @@ public class RequirementDTO {
     private int count;
     private Set<DeliveryDTO> deliveries;
 
+    private SupplierDTO supplier;
+
     public int getCount() {
         return count;
     }
@@ -20,5 +22,13 @@ public class RequirementDTO {
 
     public void setDeliveries(Set<DeliveryDTO> deliveries) {
         this.deliveries = deliveries;
+    }
+
+    public SupplierDTO getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(SupplierDTO supplier) {
+        this.supplier = supplier;
     }
 }

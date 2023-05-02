@@ -3,6 +3,7 @@ package io.github.emanuelvictor.commons.converter.converters.deliveries;
 import io.github.emanuelvictor.commons.converter.Converter;
 import io.github.emanuelvictor.commons.converter.dto.accounts.set.BuyDTO;
 import io.github.emanuelvictor.commons.converter.dto.deliveries.DeliveryDTO;
+import io.github.emanuelvictor.commons.converter.dto.deliveries.RequirementDTO;
 import io.github.emanuelvictor.commons.converter.dto.deliveries.SupplierDTO;
 import io.github.emanuelvictor.commons.converter.model.deliveries.Delivery;
 
@@ -21,9 +22,15 @@ public class DeliveryConverter extends Converter<DeliveryDTO, Delivery> {
     @Override
     public DeliveryDTO convert(Delivery origin) {
         final DeliveryDTO deliveryDTO = convertWithoutRecursive(origin);
+
         final SupplierConverter supplierConverter = new SupplierConverter(pool);
         final SupplierDTO supplierDTO = supplierConverter.convertRecursive(origin.getSupplier());
         deliveryDTO.setSupplier(supplierDTO);
+
+        final RequirementConverter requirementConverter = new RequirementConverter(pool);
+        final RequirementDTO requirementDTO = requirementConverter.convertRecursive(origin.getRequirement());
+        deliveryDTO.setRequirement(requirementDTO);
+
         return deliveryDTO;
     }
 

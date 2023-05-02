@@ -4,6 +4,7 @@ import java.util.Set;
 
 public class Requirement {
     private int count;
+    private Supplier supplier;
     private Set<Delivery> deliveries;
 
     public int getCount() {
@@ -20,5 +21,13 @@ public class Requirement {
 
     public void setDeliveries(Set<Delivery> deliveries) {
         this.deliveries = deliveries;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 }

@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class Delivery {
 
     private LocalDate date;
-
     private Supplier supplier;
+    private Requirement requirement;
 
     public LocalDate getDate() {
         return date;
@@ -22,5 +22,13 @@ public class Delivery {
 
     public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
+    }
+
+    public Requirement getRequirement() {
+        return requirement;
+    }
+
+    public void setRequirement(Requirement requirement) {
+        this.requirement = requirement;
     }
 }

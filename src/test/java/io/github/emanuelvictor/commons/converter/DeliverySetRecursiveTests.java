@@ -37,9 +37,12 @@ public class DeliverySetRecursiveTests {
         secondDelivery.setDate(LocalDate.now().plusDays(3));
 
         supplier.setRequirement(requirement);
+        requirement.setSupplier(supplier);
         requirement.setDeliveries(new HashSet<>(Arrays.asList(firstDelivery, secondDelivery)));
         firstDelivery.setSupplier(supplier);
+        firstDelivery.setRequirement(requirement);
         secondDelivery.setSupplier(supplier);
+        secondDelivery.setRequirement(requirement);
 
         final SupplierDTO supplierDTOConverted = new SupplierConverter().convert(supplier);
 
