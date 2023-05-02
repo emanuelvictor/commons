@@ -1,4 +1,4 @@
-package io.github.emanuelvictor.commons.converter.model;
+package io.github.emanuelvictor.commons.converter.model.accounts.set;
 
 import java.math.BigDecimal;
 

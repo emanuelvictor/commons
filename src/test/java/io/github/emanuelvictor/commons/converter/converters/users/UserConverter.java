@@ -1,11 +1,10 @@
-package io.github.emanuelvictor.commons.converter.converters;
+package io.github.emanuelvictor.commons.converter.converters.users;
 
 import io.github.emanuelvictor.commons.converter.Converter;
-import io.github.emanuelvictor.commons.converter.dto.ItemDTO;
-import io.github.emanuelvictor.commons.converter.dto.UserDTO;
-import io.github.emanuelvictor.commons.converter.model.User;
+import io.github.emanuelvictor.commons.converter.dto.users.ItemDTO;
+import io.github.emanuelvictor.commons.converter.dto.users.UserDTO;
+import io.github.emanuelvictor.commons.converter.model.users.User;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class UserConverter extends Converter<UserDTO, User> {
@@ -18,7 +17,7 @@ public class UserConverter extends Converter<UserDTO, User> {
     }
 
     @Override
-    public UserDTO convertAll(User origin) {
+    public UserDTO convert(User origin) {
         final UserDTO userDTO = convertWithoutRecursive(origin);
         final ItemConverter itemConverter = new ItemConverter(pool);
         final ItemDTO itemDTO = itemConverter.convertRecursive(origin.getItem());

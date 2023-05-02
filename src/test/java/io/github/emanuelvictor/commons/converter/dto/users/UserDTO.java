@@ -1,4 +1,4 @@
-package io.github.emanuelvictor.commons.converter.dto;
+package io.github.emanuelvictor.commons.converter.dto.users;
 
 public class UserDTO {
     private String name;

@@ -1,19 +1,16 @@
-package io.github.emanuelvictor.commons.converter.model;
+package io.github.emanuelvictor.commons.converter.model.users;
 
-import java.util.Set;
-
-public class Account {
-
+public class User {
     private String name;
     private String email;
-    private Set<Buy> buys;
+    private Item item;
 
-    public Set<Buy> getBuys() {
-        return buys;
+    public Item getItem() {
+        return item;
     }
 
-    public void setBuys(Set<Buy> buys) {
-        this.buys = buys;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     public String getName() {
@@ -31,4 +28,6 @@ public class Account {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
 }

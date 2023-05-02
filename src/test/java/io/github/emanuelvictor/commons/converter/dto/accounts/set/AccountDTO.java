@@ -1,4 +1,4 @@
-package io.github.emanuelvictor.commons.converter.dto;
+package io.github.emanuelvictor.commons.converter.dto.accounts.set;
 
 import java.util.Set;
 

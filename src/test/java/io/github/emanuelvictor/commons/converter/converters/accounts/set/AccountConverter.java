@@ -1,9 +1,9 @@
-package io.github.emanuelvictor.commons.converter.converters;
+package io.github.emanuelvictor.commons.converter.converters.accounts.set;
 
 import io.github.emanuelvictor.commons.converter.Converter;
-import io.github.emanuelvictor.commons.converter.dto.AccountDTO;
-import io.github.emanuelvictor.commons.converter.dto.BuyDTO;
-import io.github.emanuelvictor.commons.converter.model.Account;
+import io.github.emanuelvictor.commons.converter.dto.accounts.set.AccountDTO;
+import io.github.emanuelvictor.commons.converter.dto.accounts.set.BuyDTO;
+import io.github.emanuelvictor.commons.converter.model.accounts.set.Account;
 
 import java.util.Map;
 import java.util.Set;
@@ -18,7 +18,7 @@ public class AccountConverter extends Converter<AccountDTO, Account> {
     }
 
     @Override
-    public AccountDTO convertAll(Account origin) {
+    public AccountDTO convert(Account origin) {
         final AccountDTO accountDTO = convertWithoutRecursive(origin);
         final BuyConverter buyConverter = new BuyConverter(pool);
         final Set<BuyDTO> buiesDTOs = buyConverter.convertRecursive(origin.getBuys());

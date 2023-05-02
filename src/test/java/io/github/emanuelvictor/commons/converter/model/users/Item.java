@@ -1,11 +1,11 @@
-package io.github.emanuelvictor.commons.converter.dto;
+package io.github.emanuelvictor.commons.converter.model.users;
 
 import java.math.BigDecimal;
 
-public class ItemDTO {
+public class Item {
     private BigDecimal value;
     private int count;
-    private UserDTO user;
+    private User user;
 
     public BigDecimal getValue() {
         return value;
@@ -23,20 +23,12 @@ public class ItemDTO {
         this.count = count;
     }
 
-    public UserDTO getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserDTO user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
-    @Override
-    public String toString() {
-        return "ItemDTO{" +
-                "value=" + value +
-                ", count=" + count +
-                ", user=" + user +
-                '}';
-    }
 }

@@ -29,16 +29,24 @@ public abstract class Converter<D, O> {
         return this.getClass().getCanonicalName().toUpperCase();
     }
 
-    public abstract D convertAll(final O origin);
+    public abstract D convert(final O origin);
 
-    public List<D> convertAll(final List<O> origins) {
+    /**
+     * @param origins {@link List} list of objets to be converted.
+     * @return {@link List} list of objets converteds.
+     */
+    public List<D> convert(final List<O> origins) {
         if (origins == null) return null;
-        return origins.stream().map(this::convertAll).collect(Collectors.toList());
+        return origins.stream().peek(this::convertWithoutRecursive).map(this::convert).collect(Collectors.toList());
     }
 
-    public Set<D> convertAll(final Set<O> origins) {
+    /**
+     * @param origins {@link Set} set of objets to be converted.
+     * @return {@link Set} set of objets converteds.
+     */
+    public Set<D> convert(final Set<O> origins) {
         if (origins == null) return null;
-        return origins.stream().map(this::convertAll).collect(Collectors.toSet());
+        return origins.stream().peek(this::convertWithoutRecursive).map(this::convert).collect(Collectors.toSet());
     }
 
     public abstract D convertWithoutRecursive(final O origin);
@@ -56,10 +64,10 @@ public abstract class Converter<D, O> {
     public D convertRecursive(final O origin) {
         final D converted = get(origin);
         if (converted == null) {
-            return this.convertAll(origin);
+            return this.convert(origin);
         }
         return converted;
-    };
+    }
 
     public List<D> convertRecursive(List<O> buys) {
         return buys.stream().map(this::convertRecursive).collect(Collectors.toList());
@@ -70,8 +78,11 @@ public abstract class Converter<D, O> {
     }
 
     public D put(final O key, final D object) {
-        pool.put(key, object);
-        return object;
+        D objectFound = get(key);
+        if (objectFound == null) {
+            pool.put(key, object);
+            return object;
+        } else return objectFound;
     }
 
     public D get(O object) {
