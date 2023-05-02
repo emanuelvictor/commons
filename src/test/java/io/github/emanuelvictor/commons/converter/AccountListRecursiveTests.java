@@ -1,20 +1,19 @@
 package io.github.emanuelvictor.commons.converter;
 
-import io.github.emanuelvictor.commons.converter.converters.accounts.set.AccountConverter;
-import io.github.emanuelvictor.commons.converter.converters.accounts.set.BuyConverter;
-import io.github.emanuelvictor.commons.converter.dto.accounts.set.AccountDTO;
-import io.github.emanuelvictor.commons.converter.dto.accounts.set.BuyDTO;
-import io.github.emanuelvictor.commons.converter.model.accounts.set.Account;
-import io.github.emanuelvictor.commons.converter.model.accounts.set.Buy;
+import io.github.emanuelvictor.commons.converter.converters.accounts.list.AccountConverter;
+import io.github.emanuelvictor.commons.converter.converters.accounts.list.BuyConverter;
+import io.github.emanuelvictor.commons.converter.dto.accounts.list.AccountDTO;
+import io.github.emanuelvictor.commons.converter.dto.accounts.list.BuyDTO;
+import io.github.emanuelvictor.commons.converter.model.accounts.list.Account;
+import io.github.emanuelvictor.commons.converter.model.accounts.list.Buy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
-public class SetRecursiveTests {
+public class AccountListRecursiveTests {
 
     @Test
     void mustConvertSetRecursiveObjects() {
@@ -25,7 +24,7 @@ public class SetRecursiveTests {
         final Account account = new Account();
         account.setName("Name OF User");
         account.setEmail("emailofuser@email.com");
-        account.setBuys(new HashSet<>(Arrays.asList(firstBuy, seccondBuy)));
+        account.setBuys(Arrays.asList(firstBuy, seccondBuy));
         firstBuy.setAccount(account);
         seccondBuy.setAccount(account);
 
@@ -41,7 +40,7 @@ public class SetRecursiveTests {
     }
 
     @Test
-    void mustConvertSetRecursiveObjectsBeginningBySet() {
+    void mustConvertListRecursiveObjectsBeginningByList() {
         final Buy firstBuy = new Buy();
         firstBuy.setValue(BigDecimal.ZERO);
         final Buy seccondBuy = new Buy();
@@ -49,11 +48,11 @@ public class SetRecursiveTests {
         final Account account = new Account();
         account.setName("Name OF User");
         account.setEmail("emailofuser@email.com");
-        account.setBuys(new HashSet<>(Arrays.asList(firstBuy, seccondBuy)));
+        account.setBuys(Arrays.asList(firstBuy, seccondBuy));
         firstBuy.setAccount(account);
         seccondBuy.setAccount(account);
 
-        final Set<BuyDTO> buysDTOsConverted = new BuyConverter().convert(new HashSet<>(Arrays.asList(firstBuy, seccondBuy)));
+        final List<BuyDTO> buysDTOsConverted = new BuyConverter().convert(Arrays.asList(firstBuy, seccondBuy));
 
         Assertions.assertThat(buysDTOsConverted).isNotEmpty().extracting(BuyDTO::getAccount)
                 .satisfies(accounts -> {
