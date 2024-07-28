@@ -23,7 +23,7 @@ public abstract class Converter<D, O> {
     }
 
     /**
-     * @return {@link String} id from Converter to comparisson.
+     * @return {@link String} id from Converter to comparison.
      */
     public String getId() {
         return this.getClass().getCanonicalName().toUpperCase();
@@ -33,7 +33,7 @@ public abstract class Converter<D, O> {
 
     /**
      * @param origins {@link List} list of objets to be converted.
-     * @return {@link List} list of objets converteds.
+     * @return {@link List} list of objets converted.
      */
     public List<D> convert(final List<O> origins) {
         if (origins == null) return null;
@@ -42,7 +42,7 @@ public abstract class Converter<D, O> {
 
     /**
      * @param origins {@link Set} set of objets to be converted.
-     * @return {@link Set} set of objets converteds.
+     * @return {@link Set} set of objets converted.
      */
     public Set<D> convert(final Set<O> origins) {
         if (origins == null) return null;
